@@ -1,0 +1,44 @@
+{
+  "name": "heedy-myplugin-plugin",
+  "version": "0.0.0",
+  "description": "",
+  "nodemonConfig": {
+    "ignore": [
+      "tests",
+      "docs",
+      "node_modules",
+      ".git",
+      "dist",
+      "testdb",
+      "frontend",
+      "package-lock.json",
+      "package.json",
+      ".gitignore",
+      "heedy",
+      "Makefile"
+    ],
+    "ext": "*",
+    "delay": 500
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:readme": "remark -u remark-embed-images README.md -o ./dist/myplugin/README.md",
+    "watch:readme": "remark -u remark-embed-images README.md -o ./dist/myplugin/README.md -w",
+    "build:backend": "rsync -r --progress --exclude README.md --exclude \".*\" --exclude Makefile --include heedy.conf --exclude \"heedy*\" --exclude tests --exclude docs --exclude node_modules --exclude package.json --exclude package-lock.json --exclude frontend --exclude testdb --exclude dist --exclude docs ./* ./dist/myplugin --delete",
+    "watch:backend": "nodemon --watch . --exec \"npm run build:backend\"",
+    "build:frontend": "cd frontend; npm run build",
+    "debug:frontend": "cd frontend; npm run debug",
+    "watch:frontend": "test -d ./frontend && (cd frontend; npm run watch)",
+    "build": "npm run build:backend && npm run build:readme && npm run build:frontend",
+    "debug": "npm run build:backend && npm run build:readme && npm run debug:frontend",
+    "watch": "run-p 'watch:readme' 'watch:backend' 'watch:frontend'"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "remark-cli": "^9.0.0",
+    "remark-embed-images": "^2.0.0"
+  }
+}
