@@ -9,7 +9,7 @@
         "watch": "rollup -c -w -m --environment NODE_ENV:debug"
     },
     "author": "",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "dependencies": {
         "@rollup/plugin-commonjs": "^11.0.2",
         "@rollup/plugin-json": "^4.0.2",

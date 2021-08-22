@@ -1,4 +1,5 @@
 VERSION:=$(shell cat VERSION)
+PLUGIN_NAME:=myplugin
 
 HEEDY:=$(shell test -f ./heedy && echo "./")heedy
 
@@ -40,3 +41,6 @@ clean: clear
 	rm -rf testdb
 	if test -d node_modules; then rm -rf node_modules; fi
 	if test -d frontend/node_modules; then rm -rf frontend/node_modules; fi
+
+rename:
+	find ./ -type f -exec sed -i -e 's/myplugin/$(PLUGIN_NAME)/g' {} \;
