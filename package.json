@@ -4,6 +4,7 @@
   "description": "",
   "nodemonConfig": {
     "ignore": [
+      "README.md",
       "tests",
       "docs",
       "node_modules",
@@ -15,7 +16,8 @@
       "package.json",
       ".gitignore",
       "heedy",
-      "Makefile"
+      "Makefile",
+      "screenshots"
     ],
     "ext": "*",
     "delay": 500
@@ -24,7 +26,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:readme": "remark -u remark-embed-images README.md -o ./dist/myplugin/README.md",
     "watch:readme": "remark -u remark-embed-images README.md -o ./dist/myplugin/README.md -w",
-    "build:backend": "rsync -r --progress --exclude README.md --exclude \".*\" --exclude Makefile --include heedy.conf --exclude \"heedy*\" --exclude tests --exclude docs --exclude node_modules --exclude package.json --exclude package-lock.json --exclude frontend --exclude testdb --exclude dist --exclude docs ./* ./dist/myplugin --delete",
+    "build:backend": "rsync -r --exclude README.md --exclude screenshots --exclude \".*\" --exclude Makefile --include heedy.conf --exclude \"heedy*\" --exclude tests --exclude docs --exclude node_modules --exclude package.json --exclude package-lock.json --exclude frontend --exclude testdb --exclude dist --exclude docs ./* ./dist/myplugin --delete",
     "watch:backend": "nodemon --watch . --exec \"npm run build:backend\"",
     "build:frontend": "if test -d ./frontend; then (cd frontend; npm run build); fi",
     "debug:frontend": "if test -d ./frontend; then (cd frontend; npm run debug); fi",

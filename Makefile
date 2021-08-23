@@ -42,5 +42,5 @@ clean: clear
 	if test -d node_modules; then rm -rf node_modules; fi
 	if test -d frontend/node_modules; then rm -rf frontend/node_modules; fi
 
-rename:
+rename: clean
 	find ./ -type f -exec sed -i -e 's/myplugin/$(PLUGIN_NAME)/g' {} \;

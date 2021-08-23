@@ -11,6 +11,14 @@ p = Plugin()
 # Replace this with your own implementation.
 @routes.get(f"/api/{p.name}")
 async def hello(request):
+    if not p.isUser(request):
+        return web.json_response(
+            {
+                "error_description": "You must be a user to access this resource",
+                "error": "access_denied",
+            },
+            status=403,
+        )
     return web.json_response({"hello": "world"})
 
 
