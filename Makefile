@@ -9,7 +9,7 @@ HEEDY:=$(shell test -f ./heedy && echo "./")heedy
 release: node_modules clear dist/myplugin
 	npm run build
 	# Remove original files of pre-compressed content
-	find ./dist/myplugin/public/static -name "*.gz" -exec sh -c 'rm "$${0%.gz}"' {} ';'
+	if test -d ./dist/myplugin/public/static; then find ./dist/myplugin/public/static -name "*.gz" -exec sh -c 'rm "$${0%.gz}"' {} ';';fi
 	# Zip the plugin
 	cd dist;zip -r heedy-myplugin-plugin-${VERSION}.zip ./myplugin
 
