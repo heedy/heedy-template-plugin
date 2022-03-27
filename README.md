@@ -39,9 +39,9 @@ To test your plugin, you will now run heedy using the database in testdb:
 make run
 ```
 
-You will be able to log in to `localhost:1324` using the username `test` and password `test`. If everything went well, going to the Server Configuration menu in the UI will show the plugin, and enabling it will succeed.
+You will be able to log in to `localhost:1324` using the username `test` and password `test`, and the plugin should be automatically enabled!
 
-If something goes wrong, you can try rebuilding your plugin with `make debug`, or if all else fails, run `make clean`, which will clear the testdb folder and the `dist` folder, and try again.
+If something goes wrong, you can try rebuilding your plugin with `make debug`, or if all else fails, run `make clean`, which will clear the testdb folder and the `dist` folder, and then try building again.
 
 ### Live Reload
 

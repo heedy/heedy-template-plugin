@@ -20,19 +20,20 @@ node_modules:
 dist/myplugin:
 	mkdir -p dist/myplugin
 
-testdb:
-	$(HEEDY) create testdb --noserver --username=test --password=test
-	mkdir testdb/plugins
-	cd testdb/plugins; ln -s ../../dist/myplugin myplugin
+testdb: | dist/myplugin/heedy.conf
+	$(HEEDY) create testdb --noserver --username=test --password=test --plugin=ln-s:$(CURDIR)/dist/myplugin
 
-debug: node_modules dist/myplugin testdb
+debug: node_modules dist/myplugin
 	npm run debug
 
-watch: node_modules dist/myplugin testdb
+watch: node_modules dist/myplugin
 	npm run watch
 
+dist/myplugin/heedy.conf:
+	make debug
+
 run: testdb
-	$(HEEDY) run testdb --verbose
+	$(HEEDY) run testdb --verbose --development
 
 clear:
 	rm -rf dist
